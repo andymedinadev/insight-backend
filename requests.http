@@ -1,22 +1,7 @@
-GET http://localhost:3000/api/usuarios
-
-###
-
-POST http://localhost:3000/api/usuarios
-Content-Type: application/json
-
-{
-  "name": "Pablo",
-  "surname": "Garcia",
-  "email": "pablo.garcia@example.com",
-  "passwordHash": "123456"
-}
-
-###
-
+### GET PACIENTES
 GET http://localhost:3000/api/pacientes
 
-###
+### POST PACIENTES
 POST http://localhost:3000/api/pacientes
 Content-Type: application/json
 
@@ -34,12 +19,12 @@ Content-Type: application/json
   "ageRange": "Adulto"
 }
 
-###
 
-GET http://localhost:3000/api/pacientes/6876a76eeb5a5fd67ea6cbdb
+### GET PACIENTE POR ID
+GET http://localhost:3000/api/pacientes/6876b0e160eec5d39c52d4dd
 
-###
 
+### PUT PACIENTE POR ID
 PUT http://localhost:3000/api/pacientes/6876a76eeb5a5fd67ea6cbdb
 Content-Type: application/json
 
@@ -49,6 +34,87 @@ Content-Type: application/json
   "email": "pablo.garcia@example.com"
 }
 
-###
 
+### DELETE PACIENTE POR ID
 DELETE http://localhost:3000/api/pacientes/6876a76eeb5a5fd67ea6cbdb
+
+
+### GET NOTAS DE PACIENTE
+GET http://localhost:3000/api/pacientes/6876b0e160eec5d39c52d4dd/notas
+
+
+### POST NOTA DE PACIENTE
+POST http://localhost:3000/api/pacientes/6876b0e160eec5d39c52d4dd/notas
+Content-Type: application/json
+
+{
+  "title": "Nota de prueba",
+  "content": "Esta es una nota de prueba"
+}
+
+
+### GET NOTA POR ID
+GET http://localhost:3000/api/pacientes/6876a76eeb5a5fd67ea6cbdb/notas/6876b4141085482aacbac05b
+
+
+### PUT NOTA POR ID
+PUT http://localhost:3000/api/pacientes/6876a76eeb5a5fd67ea6cbdb/notas/6876b5091aae61a14aef0802 
+Content-Type: application/json
+
+{
+  "title": "Nota editada",
+  "content": "Esta es una nota editada"
+}
+
+
+### DELETE NOTA POR ID
+DELETE http://localhost:3000/api/pacientes/6876a76eeb5a5fd67ea6cbdb/notas/6876b5091aae61a14aef0802
+
+
+### GET MATERIALES DE PACIENTE
+GET http://localhost:3000/api/pacientes/6876b0e160eec5d39c52d4dd/materiales
+
+
+### POST MATERIAL DE PACIENTE
+POST http://localhost:3000/api/pacientes/6876b0e160eec5d39c52d4dd/materiales
+Content-Type: application/json
+
+{
+  "title": "Material de prueba 4",
+  "content": "Este es un material de prueba 4"
+}
+
+
+### GET MATERIAL POR ID
+GET http://localhost:3000/api/pacientes/6876b0e160eec5d39c52d4dd/materiales/6876b76e0a33340f7c94c47b
+
+
+### PUT MATERIAL POR ID
+PUT http://localhost:3000/api/pacientes/6876b0e160eec5d39c52d4dd/materiales/6876b76e0a33340f7c94c47b
+Content-Type: application/json
+
+{
+  "title": "Material editado",
+  "content": "Este es un material editado"
+}
+
+
+### DELETE MATERIAL POR ID
+DELETE http://localhost:3000/api/pacientes/6876b0e160eec5d39c52d4dd/materiales/6876b76e0a33340f7c94c47b
+
+
+
+### GET USUARIO PSICÓLOGO
+GET http://localhost:3000/api/usuarios
+
+
+### POST USUARIO PSICÓLOGO
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+  "name": "Pablo",
+  "surname": "Garcia",
+  "email": "pablo.garcia@example.com",
+  "passwordHash": "123456"
+}
