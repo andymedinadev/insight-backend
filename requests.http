@@ -1,3 +1,7 @@
+GET http://localhost:3000/api/usuarios
+
+###
+
 POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
@@ -7,3 +11,44 @@ Content-Type: application/json
   "email": "pablo.garcia@example.com",
   "passwordHash": "123456"
 }
+
+###
+
+GET http://localhost:3000/api/pacientes
+
+###
+POST http://localhost:3000/api/pacientes
+Content-Type: application/json
+
+{
+  "name": "Juan",
+  "surname": "Perez",
+  "birthdate": "1990-01-01",
+  "nationality": "Argentina",
+  "typeOfIdentification": "DNI",
+  "identification": "1234567890",
+  "sex": "Masculino",
+  "email": "juan.perez@example.com",
+  "phone": "1234567890",
+  "age": 30,
+  "ageRange": "Adulto"
+}
+
+###
+
+GET http://localhost:3000/api/pacientes/6876a76eeb5a5fd67ea6cbdb
+
+###
+
+PUT http://localhost:3000/api/pacientes/6876a76eeb5a5fd67ea6cbdb
+Content-Type: application/json
+
+{
+  "name": "Pablo",
+  "surname": "Garcia",
+  "email": "pablo.garcia@example.com"
+}
+
+###
+
+DELETE http://localhost:3000/api/pacientes/6876a76eeb5a5fd67ea6cbdb
