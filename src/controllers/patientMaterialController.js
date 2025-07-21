@@ -2,10 +2,10 @@ const PatientMaterial = require("../models/PatientMaterial");
 
 const createMaterial = async (req, res) => {
   try {
-    const { pacienteId } = req.params;
+    const { patientId } = req.params;
     const material = new PatientMaterial({
       ...req.body,
-      patientId: pacienteId,
+      patientId,
     });
     await material.save();
     res.status(201).json(material);

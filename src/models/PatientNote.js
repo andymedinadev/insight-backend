@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const patientNoteSchema = new mongoose.Schema({
   patientId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Paciente",
+    ref: "Patient",
     required: true,
   },
   title: { type: String, required: true, maxlength: 200 },

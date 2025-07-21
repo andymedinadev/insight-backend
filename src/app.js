@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 
-const usuarioRoutes = require("./routes/usuarioRoutes");
-const pacienteRoutes = require("./routes/pacienteRoutes");
+const userRoutes = require("./routes/userRoutes");
+const patientRoutes = require("./routes/patientRoutes");
 const patientNoteRoutes = require("./routes/patientNoteRoutes");
 const patientMaterialRoutes = require("./routes/patientMaterialRoutes");
 
@@ -11,9 +11,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/usuarios", usuarioRoutes);
-app.use("/api/pacientes", pacienteRoutes);
-app.use("/api/pacientes/:pacienteId/notas", patientNoteRoutes);
-app.use("/api/pacientes/:pacienteId/materiales", patientMaterialRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/patients", patientRoutes);
+app.use("/api/patients/:patientId/notes", patientNoteRoutes);
+app.use("/api/patients/:patientId/materials", patientMaterialRoutes);
 
 module.exports = app;

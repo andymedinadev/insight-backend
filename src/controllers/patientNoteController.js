@@ -2,10 +2,10 @@ const PatientNote = require("../models/PatientNote");
 
 const createNote = async (req, res) => {
   try {
-    const { pacienteId } = req.params;
+    const { patientId } = req.params;
     const note = new PatientNote({
       ...req.body,
-      patientId: pacienteId,
+      patientId,
     });
     await note.save();
     res.status(201).json(note);

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const pacienteSchema = new mongoose.Schema({
+const patientSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -83,7 +83,7 @@ const pacienteSchema = new mongoose.Schema({
 
   notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "PatientNote" }],
   materials: [{ type: mongoose.Schema.Types.ObjectId, ref: "PatientMaterial" }],
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "Usuario" },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
-module.exports = mongoose.model("Paciente", pacienteSchema);
+module.exports = mongoose.model("Patient", patientSchema);
