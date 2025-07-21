@@ -1,32 +1,46 @@
 const Patient = require("../models/Patient");
+const { sendResponse, sendError } = require("../utils/response");
 
 const createPatient = async (req, res) => {
   try {
     const patient = new Patient(req.body);
     await patient.save();
-    res.status(201).json(patient);
+
+    sendResponse({
+      res,
+      data: patient,
+      status: 201,
+      message: "Paciente creado correctamente",
+    });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    sendError({ res, err, status: 400 });
   }
 };
 
 const getPatients = async (req, res) => {
   try {
     const patients = await Patient.find().populate("userId");
-    res.json(patients);
+
+    sendResponse({ res, data: patients });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 
 const getPatientById = async (req, res) => {
   try {
     const patient = await Patient.findById(req.params.id).populate("userId");
-    if (!patient)
-      return res.status(404).json({ error: "Paciente no encontrado" });
-    res.json(patient);
+
+    if (!patient) {
+      return sendError({
+        res,
+        message: "Paciente no encontrado",
+        status: 404,
+      });
+    }
+    sendResponse({ res, data: patient });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 
@@ -35,22 +49,28 @@ const updatePatient = async (req, res) => {
     const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
-    if (!patient)
-      return res.status(404).json({ error: "Paciente no encontrado" });
-    res.json(patient);
+
+    if (!patient) {
+      return sendError({ res, status: 404, message: "Paciente no encontrado" });
+    }
+
+    sendResponse({ res, data: patient });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    sendError({ res, err, status: 400 });
   }
 };
 
 const deletePatient = async (req, res) => {
   try {
     const patient = await Patient.findByIdAndDelete(req.params.id);
-    if (!patient)
-      return res.status(404).json({ error: "Paciente no encontrado" });
-    res.json({ message: "Paciente eliminado" });
+
+    if (!patient) {
+      return sendError({ res, message: "Paciente no encontrado", status: 404 });
+    }
+
+    sendResponse({ res, message: "Paciente eliminado" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 

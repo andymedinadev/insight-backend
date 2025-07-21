@@ -1,21 +1,28 @@
 const User = require("../models/User");
+const { sendResponse, sendError } = require("../utils/response");
 
 const createUser = async (req, res) => {
   try {
     const user = new User(req.body);
     await user.save();
-    res.status(201).json(user);
+
+    sendResponse({
+      res,
+      data: user,
+      status: 201,
+      message: "Usuario creado correctamente",
+    });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    sendError({ res, err, status: 400 });
   }
 };
 
 const getUsers = async (req, res) => {
   try {
     const users = await User.find();
-    res.json(users);
+    sendResponse({ res, data: users });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 

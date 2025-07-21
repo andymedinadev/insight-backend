@@ -1,34 +1,44 @@
 const PatientMaterial = require("../models/PatientMaterial");
+const { sendResponse, sendError } = require("../utils/response");
 
 const createMaterial = async (req, res) => {
   try {
     const { patientId } = req.params;
+
     const material = new PatientMaterial({
       ...req.body,
       patientId,
     });
     await material.save();
-    res.status(201).json(material);
+
+    sendResponse({
+      res,
+      data: material,
+      status: 201,
+      message: "Material creado correctamente",
+    });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    sendError({ res, err, status: 400 });
   }
 };
 
 const getMaterials = async (req, res) => {
   try {
     const materials = await PatientMaterial.find();
-    res.json(materials);
+
+    sendResponse({ res, data: materials });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 
 const getMaterialById = async (req, res) => {
   try {
     const material = await PatientMaterial.findById(req.params.materialId);
-    res.json(material);
+
+    sendResponse({ res, data: material });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 
@@ -39,18 +49,20 @@ const updateMaterial = async (req, res) => {
       req.body,
       { new: true }
     );
-    res.json(material);
+
+    sendResponse({ res, data: material });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 
 const deleteMaterial = async (req, res) => {
   try {
     await PatientMaterial.findByIdAndDelete(req.params.materialId);
-    res.json({ message: "Material eliminado correctamente" });
+
+    sendResponse({ res, message: "Material eliminado correctamente" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 

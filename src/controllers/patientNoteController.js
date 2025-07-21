@@ -1,34 +1,44 @@
 const PatientNote = require("../models/PatientNote");
+const { sendResponse, sendError } = require("../utils/response");
 
 const createNote = async (req, res) => {
   try {
     const { patientId } = req.params;
+
     const note = new PatientNote({
       ...req.body,
       patientId,
     });
     await note.save();
-    res.status(201).json(note);
+
+    sendResponse({
+      res,
+      data: note,
+      status: 201,
+      message: "Nota creada correctamente",
+    });
   } catch (err) {
-    res.status(400).json({ error: err.message });
+    sendError({ res, err, status: 400 });
   }
 };
 
 const getNotes = async (req, res) => {
   try {
     const notes = await PatientNote.find();
-    res.json(notes);
+
+    sendResponse({ res, data: notes });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 
 const getNoteById = async (req, res) => {
   try {
     const note = await PatientNote.findById(req.params.noteId);
-    res.json(note);
+
+    sendResponse({ res, data: note });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 
@@ -39,18 +49,20 @@ const updateNote = async (req, res) => {
       req.body,
       { new: true }
     );
-    res.json(note);
+
+    sendResponse({ res, data: note });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 
 const deleteNote = async (req, res) => {
   try {
     await PatientNote.findByIdAndDelete(req.params.noteId);
-    res.json({ message: "Nota eliminada correctamente" });
+
+    sendResponse({ res, message: "Nota eliminada correctamente" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    sendError({ res, err });
   }
 };
 

@@ -29,9 +29,9 @@ PUT http://localhost:3000/api/patients/6876a76eeb5a5fd67ea6cbdb
 Content-Type: application/json
 
 {
-  "name": "Pablo",
-  "surname": "Garcia",
-  "email": "pablo.garcia@example.com"
+  "name": "EditedName",
+  "surname": "EditedSurname",
+  "email": "edited.email@example.com"
 }
 
 
