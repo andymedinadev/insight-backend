@@ -6,8 +6,8 @@ POST http://localhost:3000/api/patients
 Content-Type: application/json
 
 {
-  "name": "Juan",
-  "surname": "Perez",
+  "name": "JuanPACIENTE",
+  "surname": "PerezPACIENTE",
   "birthdate": "1990-01-01",
   "nationality": "Argentina",
   "typeOfIdentification": "DNI",
@@ -29,8 +29,8 @@ PUT http://localhost:3000/api/patients/6876a76eeb5a5fd67ea6cbdb
 Content-Type: application/json
 
 {
-  "name": "EditedName",
-  "surname": "EditedSurname",
+  "name": "EDITED NAME",
+  "surname": "EDITED SURNAME",
   "email": "edited.email@example.com"
 }
 
@@ -62,8 +62,8 @@ PUT http://localhost:3000/api/patients/6876a76eeb5a5fd67ea6cbdb/notes/6876b5091a
 Content-Type: application/json
 
 {
-  "title": "Nota editada",
-  "content": "Esta es una nota editada"
+  "title": "NOTA EDITADA",
+  "content": "ESTA ES UNA NOTA EDITADA"
 }
 
 
@@ -80,8 +80,8 @@ POST http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd/materials
 Content-Type: application/json
 
 {
-  "title": "Material de prueba 4",
-  "content": "Este es un material de prueba 4"
+  "title": "Material de prueba",
+  "content": "Este es un material de prueba"
 }
 
 
@@ -94,8 +94,8 @@ PUT http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd/materials/6876b7
 Content-Type: application/json
 
 {
-  "title": "Material editado",
-  "content": "Este es un material editado"
+  "title": "MATERIAL EDITADO",
+  "content": "ESTE ES UN MATERIAL EDITADO"
 }
 
 
@@ -113,8 +113,8 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "name": "Pablo",
-  "surname": "Garcia",
+  "name": "PabloUSUARIO",
+  "surname": "GarciaUSUARIO",
   "email": "pablo.garcia@example.com",
   "passwordHash": "123456"
 }

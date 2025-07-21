@@ -24,7 +24,8 @@ const createNote = async (req, res) => {
 
 const getNotes = async (req, res) => {
   try {
-    const notes = await PatientNote.find();
+    const { patientId } = req.params;
+    const notes = await PatientNote.find({ patientId });
 
     sendResponse({ res, data: notes });
   } catch (err) {

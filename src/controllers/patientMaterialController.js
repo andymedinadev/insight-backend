@@ -24,7 +24,8 @@ const createMaterial = async (req, res) => {
 
 const getMaterials = async (req, res) => {
   try {
-    const materials = await PatientMaterial.find();
+    const { patientId } = req.params;
+    const materials = await PatientMaterial.find({ patientId });
 
     sendResponse({ res, data: materials });
   } catch (err) {
