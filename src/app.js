@@ -1,8 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 
-require("dotenv").config();
-
 const usuarioRoutes = require("./routes/usuarioRoutes");
 const pacienteRoutes = require("./routes/pacienteRoutes");
 const patientNoteRoutes = require("./routes/patientNoteRoutes");
