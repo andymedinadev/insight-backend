@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
+const Counter = require("./Counter");
 
 const patientSchema = new mongoose.Schema({
+  shortId: {
+    type: Number,
+    unique: true,
+  },
   name: {
     type: String,
     required: true,
@@ -84,6 +89,18 @@ const patientSchema = new mongoose.Schema({
   notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "PatientNote" }],
   materials: [{ type: mongoose.Schema.Types.ObjectId, ref: "PatientMaterial" }],
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+});
+
+patientSchema.pre("save", async function (next) {
+  if (this.isNew) {
+    const counter = await Counter.findOneAndUpdate(
+      { _id: "patientShortId" },
+      { $inc: { sequenceValue: 1 } },
+      { new: true, upsert: true }
+    );
+    this.shortId = counter.sequenceValue;
+  }
+  next();
 });
 
 module.exports = mongoose.model("Patient", patientSchema);

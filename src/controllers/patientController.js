@@ -29,7 +29,9 @@ const getPatients = async (req, res) => {
 
 const getPatientById = async (req, res) => {
   try {
-    const patient = await Patient.findById(req.params.id).populate("userId");
+    const patient = await Patient.findOne({ shortId: req.params.id }).populate(
+      "userId"
+    );
 
     if (!patient) {
       return sendError({
@@ -46,9 +48,11 @@ const getPatientById = async (req, res) => {
 
 const updatePatient = async (req, res) => {
   try {
-    const patient = await Patient.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const patient = await Patient.findOneAndUpdate(
+      { shortId: req.params.id },
+      req.body,
+      { new: true, runValidators: true }
+    );
 
     if (!patient) {
       return sendError({ res, status: 404, message: "Paciente no encontrado" });
@@ -62,7 +66,7 @@ const updatePatient = async (req, res) => {
 
 const deletePatient = async (req, res) => {
   try {
-    const patient = await Patient.findByIdAndDelete(req.params.id);
+    const patient = await Patient.findOneAndDelete({ shortId: req.params.id });
 
     if (!patient) {
       return sendError({ res, message: "Paciente no encontrado", status: 404 });

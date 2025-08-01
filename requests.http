@@ -21,11 +21,11 @@ Content-Type: application/json
 
 
 ### GET PACIENTE POR ID
-GET http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd
+GET http://localhost:3000/api/patients/2
 
 
 ### PUT PACIENTE POR ID
-PUT http://localhost:3000/api/patients/6876a76eeb5a5fd67ea6cbdb
+PUT http://localhost:3000/api/patients/2
 Content-Type: application/json
 
 {
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 
 ### DELETE PACIENTE POR ID
-DELETE http://localhost:3000/api/patients/6876a76eeb5a5fd67ea6cbdb
+DELETE http://localhost:3000/api/patients/4
 
 
 ### GET NOTAS DE PACIENTE
