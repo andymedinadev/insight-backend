@@ -19,7 +19,7 @@ const createPatient = async (req, res) => {
 
 const getPatients = async (req, res) => {
   try {
-    const patients = await Patient.find().populate("userId");
+    const patients = await Patient.find();
 
     sendResponse({ res, data: patients });
   } catch (err) {
@@ -29,9 +29,7 @@ const getPatients = async (req, res) => {
 
 const getPatientById = async (req, res) => {
   try {
-    const patient = await Patient.findOne({ shortId: req.params.id }).populate(
-      "userId"
-    );
+    const patient = await Patient.findOne({ shortId: req.params.id });
 
     if (!patient) {
       return sendError({
