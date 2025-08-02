@@ -86,7 +86,11 @@ const patientSchema = new mongoose.Schema({
   sessionFrequency: String,
   preferedContact: String,
 
-  notes: [{ type: mongoose.Schema.Types.ObjectId, ref: "PatientNote" }],
+  nextNoteId: {
+    type: Number,
+    default: 1,
+  },
+
   materials: [{ type: mongoose.Schema.Types.ObjectId, ref: "PatientMaterial" }],
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });

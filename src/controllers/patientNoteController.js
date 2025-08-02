@@ -1,15 +1,34 @@
-const PatientNote = require("../models/PatientNote");
 const { sendResponse, sendError } = require("../utils/response");
+
+const PatientNote = require("../models/PatientNote");
+const Patient = require("../models/Patient");
 
 const createNote = async (req, res) => {
   try {
     const { patientId } = req.params;
 
+    const patient = await Patient.findOne({ patientId });
+
+    if (!patient) {
+      return sendError({
+        res,
+        status: 404,
+        message: "Paciente no encontrado.",
+      });
+    }
+
+    const noteId = patient.nextNoteId;
+
     const note = new PatientNote({
       ...req.body,
       patientId,
+      noteId,
     });
+
     await note.save();
+
+    patient.nextNoteId += 1;
+    await patient.save();
 
     sendResponse({
       res,
@@ -25,6 +44,17 @@ const createNote = async (req, res) => {
 const getNotes = async (req, res) => {
   try {
     const { patientId } = req.params;
+
+    const patient = await Patient.findOne({ patientId });
+
+    if (!patient) {
+      return sendError({
+        res,
+        status: 404,
+        message: "Paciente no encontrado.",
+      });
+    }
+
     const notes = await PatientNote.find({ patientId });
 
     sendResponse({ res, data: notes });
@@ -35,7 +65,18 @@ const getNotes = async (req, res) => {
 
 const getNoteById = async (req, res) => {
   try {
-    const note = await PatientNote.findById(req.params.noteId);
+    const note = await PatientNote.findOne({
+      patientId: req.params.patientId,
+      noteId: req.params.noteId,
+    });
+
+    if (!note) {
+      return sendError({
+        res,
+        status: 404,
+        message: "Nota no encontrada para este paciente.",
+      });
+    }
 
     sendResponse({ res, data: note });
   } catch (err) {
@@ -45,11 +86,19 @@ const getNoteById = async (req, res) => {
 
 const updateNote = async (req, res) => {
   try {
-    const note = await PatientNote.findByIdAndUpdate(
-      req.params.noteId,
+    const note = await PatientNote.findOneAndUpdate(
+      { patientId: req.params.patientId, noteId: req.params.noteId },
       req.body,
-      { new: true }
+      { new: true, runValidators: true }
     );
+
+    if (!note) {
+      return sendError({
+        res,
+        status: 404,
+        message: "Nota no encontrada para este paciente.",
+      });
+    }
 
     sendResponse({ res, data: note });
   } catch (err) {
@@ -59,7 +108,18 @@ const updateNote = async (req, res) => {
 
 const deleteNote = async (req, res) => {
   try {
-    await PatientNote.findByIdAndDelete(req.params.noteId);
+    const note = await PatientNote.findOneAndDelete({
+      patientId: req.params.patientId,
+      noteId: req.params.noteId,
+    });
+
+    if (!note) {
+      return sendError({
+        res,
+        status: 404,
+        message: "Nota no encontrada para este paciente.",
+      });
+    }
 
     sendResponse({ res, message: "Nota eliminada correctamente" });
   } catch (err) {
