@@ -36,15 +36,15 @@ Content-Type: application/json
 
 
 ### DELETE PACIENTE POR ID
-DELETE http://localhost:3000/api/patients/4
+DELETE http://localhost:3000/api/patients/2
 
 
 ### GET NOTAS DE PACIENTE
-GET http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd/notes
+GET http://localhost:3000/api/patients/2/notes
 
 
 ### POST NOTA DE PACIENTE
-POST http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd/notes
+POST http://localhost:3000/api/patients/6/notes
 Content-Type: application/json
 
 {
@@ -54,11 +54,11 @@ Content-Type: application/json
 
 
 ### GET NOTA POR ID
-GET http://localhost:3000/api/patients/6876a76eeb5a5fd67ea6cbdb/notes/6876b4141085482aacbac05b
+GET http://localhost:3000/api/patients/6/notes/2
 
 
 ### PUT NOTA POR ID
-PUT http://localhost:3000/api/patients/6876a76eeb5a5fd67ea6cbdb/notes/6876b5091aae61a14aef0802 
+PUT http://localhost:3000/api/patients/6/notes/2 
 Content-Type: application/json
 
 {
@@ -68,15 +68,15 @@ Content-Type: application/json
 
 
 ### DELETE NOTA POR ID
-DELETE http://localhost:3000/api/patients/6876a76eeb5a5fd67ea6cbdb/notes/6876b5091aae61a14aef0802
+DELETE http://localhost:3000/api/patients/6/notes/2
 
 
 ### GET MATERIALES DE PACIENTE
-GET http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd/materials
+GET http://localhost:3000/api/patients/6/materials
 
 
 ### POST MATERIAL DE PACIENTE
-POST http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd/materials
+POST http://localhost:3000/api/patients/6/materials
 Content-Type: application/json
 
 {
@@ -86,11 +86,11 @@ Content-Type: application/json
 
 
 ### GET MATERIAL POR ID
-GET http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd/materials/6876b76e0a33340f7c94c47b
+GET http://localhost:3000/api/patients/6/materials/2
 
 
 ### PUT MATERIAL POR ID
-PUT http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd/materials/6876b76e0a33340f7c94c47b
+PUT http://localhost:3000/api/patients/6/materials/2
 Content-Type: application/json
 
 {
@@ -100,7 +100,7 @@ Content-Type: application/json
 
 
 ### DELETE MATERIAL POR ID
-DELETE http://localhost:3000/api/patients/6876b0e160eec5d39c52d4dd/materials/6876b76e0a33340f7c94c47b
+DELETE http://localhost:3000/api/patients/6/materials/2
 
 
 
