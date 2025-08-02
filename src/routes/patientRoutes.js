@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.post("/", patientController.createPatient);
 router.get("/", patientController.getPatients);
-router.get("/:id", patientController.getPatientById);
-router.put("/:id", patientController.updatePatient);
-router.delete("/:id", patientController.deletePatient);
+router.get("/:patientId", patientController.getPatientById);
+router.put("/:patientId", patientController.updatePatient);
+router.delete("/:patientId", patientController.deletePatient);
 
 module.exports = router;

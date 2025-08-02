@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Counter = require("./Counter");
 
 const patientSchema = new mongoose.Schema({
-  shortId: {
+  patientId: {
     type: Number,
     unique: true,
   },
@@ -94,11 +94,11 @@ const patientSchema = new mongoose.Schema({
 patientSchema.pre("save", async function (next) {
   if (this.isNew) {
     const counter = await Counter.findOneAndUpdate(
-      { _id: "patientShortId" },
+      { _id: "patientId" },
       { $inc: { sequenceValue: 1 } },
       { new: true, upsert: true }
     );
-    this.shortId = counter.sequenceValue;
+    this.patientId = counter.sequenceValue;
   }
   next();
 });
