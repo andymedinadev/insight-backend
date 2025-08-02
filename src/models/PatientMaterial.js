@@ -1,9 +1,12 @@
 const mongoose = require("mongoose");
 
 const patientMaterialSchema = new mongoose.Schema({
+  materialId: {
+    type: Number,
+    unique: true,
+  },
   patientId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Patient",
+    type: Number,
     required: true,
   },
   title: { type: String, required: true, maxlength: 200 },
@@ -11,5 +14,7 @@ const patientMaterialSchema = new mongoose.Schema({
   creationDate: { type: Date, default: Date.now },
   actualizationDate: { type: Date },
 });
+
+patientMaterialSchema.index({ patientId: 1, materialId: 1 }, { unique: true });
 
 module.exports = mongoose.model("PatientMaterial", patientMaterialSchema);

@@ -91,7 +91,11 @@ const patientSchema = new mongoose.Schema({
     default: 1,
   },
 
-  materials: [{ type: mongoose.Schema.Types.ObjectId, ref: "PatientMaterial" }],
+  nextMaterialId: {
+    type: Number,
+    default: 1,
+  },
+
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
